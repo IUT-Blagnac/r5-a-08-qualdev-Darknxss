@@ -73,3 +73,68 @@ public class Order {
 
 .Execution avec succès des tests
 image::execution_tests_tp2.png[width=80%]
+
+
+== TP3...
+
+L'objectif fixé est de reproduire le comportement d'un utilisateur avec une calculatrice et de tester quand on additionne et multiplie 2 nombres
+
+.Contenu du fichier calculator.py
+[source, python]
+----
+from behave import given, when, then
+
+@given('I have entered {number} into the calculator')
+def step_impl(context, number):
+    if not hasattr(context, 'numbers'):
+        context.numbers = []
+    context.numbers.append(int(number))
+
+@when('I press add')
+def step_impl(context):
+    context.result = sum(context.numbers)
+
+@when('I press multiply')
+def step_impl(context):
+    context.result = 1  
+    for num in context.numbers:
+        context.result *= num
+
+@then('the result should be {expected_result} on the screen')
+def step_impl(context, expected_result):
+    assert context.result == int(expected_result)
+----
+
+
+.Contenu du fichier calculator.py
+[source, gherkin]
+----
+Feature: Calculator
+    In order to avoid silly mistakes
+    As a math idiot
+    I want to be told the sum and the multiplication of two numbers
+
+Scenario Outline: Add two numbers
+    Given I have entered <number1> into the calculator
+    And I have entered <number2> into the calculator
+    When I press add
+    Then the result should be <resultAdd> on the screen
+
+Scenario Outline: Multiply two numbers
+    Given I have entered <number1> into the calculator
+    And I have entered <number2> into the calculator
+    When I press multiply
+    Then the result should be <resultMultiply> on the screen
+
+Examples:
+    | number1 | number2 | resultAdd | resultMultiply |
+    | 50      | 70      | 120       | 3500           |
+    | 1080    | 20      | 1100      | 21600          |
+    | 3       | 2       | 5         | 6              |
+----
+
+.Execution avec succès des tests
+image::execution_tests_tp3.png[width=80%]
+
+.Trace d'execution de tests
+image::trace_execution_tests_tp3.png[width=80%]
