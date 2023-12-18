@@ -146,7 +146,7 @@ L'objectif fixé pour ce TP est de générer une documentation pour les tests.
 La documentation du TP2 a donc été générée avec cukedoctor.
 La documentation est disponible dans le dossier doc. 
 
-link:cucumber_demo/doc/cucumber-html-reports/overview-features.html[La documentation est disponible en cliquant ici.]
+link:cucumber_demo/doc/cucumber-html-reports/[La documentation est disponible en cliquant ici.]
 
 .Contenu du fichier RunCucumberTest.java (TP2)
 [source, java]
